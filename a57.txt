@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Business of Boxing — Promoters, Purses &amp; Broadcasts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#EDE4D3;
+    --canvas-dim:#E3D8C2;
+    --ink:#1C1712;
+    --accent:#8A5A2B;      /* bronze/amber — this issue's accent */
+    --accent-deep:#5E3B1B;
+    --corner-gold:#B08A3E;
+    --line:#C9BCA0;
+    --muted:#6B6153;
+    --maxw:740px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--canvas); color:var(--ink);
+    font-family:'Lora', Georgia, serif; font-size:18px; line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Anton','Arial Narrow',sans-serif; font-weight:400;
+    letter-spacing:0.01em; line-height:0.95; text-wrap:balance;
+  }
+  a{color:var(--accent);}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  .masthead{
+    padding:28px 24px 22px; display:flex; align-items:baseline; justify-content:space-between;
+    max-width:980px; margin:0 auto; border-bottom:1px solid var(--line);
+  }
+  .masthead .mark{font-family:'Anton', sans-serif; font-size:22px; letter-spacing:0.06em;}
+  .masthead .mark span{color:var(--accent);}
+  .masthead .tagline{font-size:13px; color:var(--muted); letter-spacing:0.08em; text-transform:uppercase; text-align:right;}
+  .masthead .tagline small{display:block; font-size:11px; opacity:0.75; margin-top:2px;}
+
+  /* ---------- Hero: image LEFT, text RIGHT (mirror of issue 2's text-left/image-right) ---------- */
+  .hero{
+    max-width:980px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; min-height:62vh;
+  }
+  .hero-photo{position:relative; overflow:hidden; order:1;}
+  .hero-photo img{width:100%; height:100%; object-fit:cover;}
+  .hero-photo .photo-credit{
+    position:absolute; bottom:12px; left:14px; font-size:10.5px;
+    color:rgba(237,228,211,0.8); background:rgba(20,17,14,0.4); padding:2px 6px;
+  }
+  .hero-text{
+    order:2; background:var(--accent-deep); color:#EDE4D3;
+    display:flex; flex-direction:column; justify-content:center; padding:56px 44px;
+  }
+  .hero-eyebrow{font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:#D9B98A; margin-bottom:14px;}
+  .hero-text h1{font-size:clamp(36px,5vw,58px); margin:0 0 18px; color:#F4EEE0;}
+  .hero-text p.lede{font-family:'Lora', serif; font-style:italic; font-size:17px; color:#DCCBAF; margin:0;}
+  @media (max-width:720px){
+    .hero{grid-template-columns:1fr;}
+    .hero-photo{order:1; height:280px;}
+    .hero-text{order:2;}
+  }
+
+  .intro{padding:56px 0 8px;}
+  .intro p{font-size:20px; color:#2A231C;}
+  .intro p:first-of-type::first-letter{
+    font-family:'Anton', sans-serif; font-size:64px; float:left; line-height:0.8;
+    padding:6px 10px 0 0; color:var(--accent);
+  }
+
+  .round{padding:56px 0; border-top:1px solid var(--line);}
+  .round-head{display:flex; align-items:baseline; gap:16px; margin-bottom:22px;}
+  .round-num{font-family:'Anton', sans-serif; font-size:15px; letter-spacing:0.14em; color:var(--accent); white-space:nowrap; padding-top:6px;}
+  .round-head h2{font-size:clamp(30px,5vw,44px); margin:0;}
+  .round-body p{margin:0 0 18px;}
+  .round-body h3{font-family:'Lora', serif; font-weight:600; font-style:italic; font-size:19px; margin:26px 0 8px; color:var(--accent);}
+  .round-body ul, .round-body ol{padding-left:22px; margin:0 0 18px;}
+  .round-body li{margin-bottom:8px;}
+
+  .band{margin:0;}
+  .band img{width:100%; height:44vh; min-height:260px; object-fit:cover;}
+  .band figcaption{max-width:var(--maxw); margin:10px auto 0; padding:0 24px; font-size:13px; color:var(--muted); font-style:italic;}
+  .band.pre figcaption{margin:10px auto 26px;}
+
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:2px;}
+  .duo img{height:260px; width:100%; object-fit:cover;}
+  .duo figcaption{grid-column:1/-1; max-width:var(--maxw); margin:10px auto 0; padding:0 24px; font-size:13px; color:var(--muted); font-style:italic;}
+
+  /* pull-quote style stat block (new component for this issue) */
+  .cash-flow{
+    background:var(--canvas-dim); border-left:4px solid var(--accent);
+    padding:20px 24px; margin:8px 0 26px; font-size:16px;
+  }
+  .cash-flow strong{color:var(--accent-deep); font-family:'Anton', sans-serif; font-weight:400; letter-spacing:0.02em;}
+
+  table{width:100%; border-collapse:collapse; margin:10px 0 24px; font-size:16px;}
+  th, td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top;}
+  th{font-family:'Anton', sans-serif; font-weight:400; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted);}
+  tr:last-child td{border-bottom:none;}
+
+  .glossary{columns:2; column-gap:36px;}
+  .glossary dt{font-family:'Anton', sans-serif; font-size:16px; letter-spacing:0.02em; margin-top:16px; break-inside:avoid;}
+  .glossary dt:first-child{margin-top:0;}
+  .glossary dd{margin:2px 0 0; font-size:15.5px; color:#3A322A;}
+
+  footer{border-top:1px solid var(--line); padding:36px 0 60px;}
+  footer p{font-size:13.5px; color:var(--muted); max-width:var(--maxw); margin:0 auto 8px; padding:0 24px;}
+
+  @media (max-width:640px){
+    body{font-size:16.5px;}
+    .glossary{columns:1;}
+    .duo{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="mark">THE SQUARED <span>CIRCLE</span></div>
+  <div class="tagline">The Business<small>Issue 04 — Promoters, Purses &amp; Broadcasts</small></div>
+</div>
+
+<header class="hero">
+  <div class="hero-photo">
+    <img src="https://images.unsplash.com/photo-1716307043003-dbe6a5cc496e?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="An empty boxing ring with gloves hanging from the ceiling">
+    <div class="photo-credit">Temple Noble Art / Unsplash</div>
+  </div>
+  <div class="hero-text">
+    <div class="hero-eyebrow">An Informational Guide</div>
+    <h1>Who Actually Runs a Fight Night</h1>
+    <p class="lede">Two boxers, one ring — and behind them, promoters, sanctioning bodies, broadcasters, and a state commission all with a hand in whether the fight happens at all. This issue looks at the machinery around the sport.</p>
+  </div>
+</header>
+
+<main>
+  <div class="wrap intro">
+    <p>A boxing match looks simple on fight night, but getting two fighters into the same ring is a longer process than it looks — contracts, purse splits, sanctioning fees, medical clearances, and broadcast deals are usually settled months in advance, often after longer negotiations than the fight itself lasts.</p>
+    <p>This issue steps outside the ropes to look at how a fight card actually gets built, who gets paid what, and how the sport has funded itself differently across eras. As with the rest of this series, it's a reference, not a promotion for any organisation named in it.</p>
+  </div>
+
+  <!-- ROUND 01 -->
+  <section class="round wrap" id="promoters">
+    <div class="round-head">
+      <span class="round-num">ROUND&nbsp;01</span>
+      <h2>Promoters &amp; Matchmakers</h2>
+    </div>
+    <div class="round-body">
+      <p>A boxing promoter is the person or company that puts on an event — booking the venue, securing broadcast deals, and paying the fighters out of the revenue the card generates. Unlike most team sports, professional boxing has no single league structure; instead, competing promotional companies each sign fighters to multi-fight contracts and build cards around them.</p>
+      <h3>The matchmaker's job</h3>
+      <p>A matchmaker works for a promoter and is responsible for actually pairing fighters — balancing a card so it's competitive enough to be worth watching, safe enough to satisfy a commission, and commercially sensible enough to protect a rising fighter's record while they build a following.</p>
+      <p>Because promoters compete rather than cooperate, the sport's biggest fights often require rival promotional companies to reach a separate deal just to get their fighters into the same ring — a negotiation that can take longer than either fighter's training camp.</p>
+    </div>
+  </section>
+
+  <div class="duo">
+    <img src="https://images.unsplash.com/photo-1584829781342-e2e97f329b65?fm=jpg&q=80&w=1000&auto=format&fit=crop" alt="A grayscale photo of a person holding a microphone">
+    <img src="https://images.unsplash.com/photo-1672589008772-4f22acf38f6f?fm=jpg&q=80&w=1000&auto=format&fit=crop" alt="A person standing on a tiled floor near boxing shoes">
+    <figcaption>A fight card starts months earlier — press conferences and contract terms, long before the walkout.</figcaption>
+  </div>
+
+  <!-- ROUND 02 -->
+  <section class="round wrap" id="sanctioning">
+    <div class="round-head">
+      <span class="round-num">ROUND&nbsp;02</span>
+      <h2>Sanctioning Bodies &amp; Fees</h2>
+    </div>
+    <div class="round-body">
+      <p>The four major sanctioning bodies — WBA, WBC, IBF, and WBO — don't organise fights themselves; they maintain independent rankings, authorise title fights between ranked contenders, and charge a sanctioning fee, typically a percentage of each fighter's purse, for the right to fight for their belt.</p>
+      <h3>Mandatory challengers</h3>
+      <p>Each body requires champions to defend against their highest-ranked "mandatory" challenger within a set period, rather than only choosing the most commercially attractive opponent — a rule intended to keep rankings meaningful, though champions can sometimes pay a fee to postpone a mandatory defence in favour of a more lucrative optional one.</p>
+      <p>Because four different bodies can each rank contenders differently, it's common for a division to have four separate "champions" simultaneously, with an "undisputed" champion only emerging when one fighter holds all four belts at once.</p>
+    </div>
+  </section>
+
+  <!-- ROUND 03 -->
+  <section class="round wrap" id="undercard">
+    <div class="round-head">
+      <span class="round-num">ROUND&nbsp;03</span>
+      <h2>The Undercard &amp; Purse Structure</h2>
+    </div>
+    <div class="round-body">
+      <p>A fight card is built like a magazine's table of contents: several shorter bouts (the undercard) building toward the main event, which draws the largest purse and the bulk of the broadcast attention.</p>
+      <div class="cash-flow">
+        <strong>How the money typically moves:</strong> ticket sales, broadcast rights fees, and sponsorship revenue are pooled by the promoter, who then pays each fighter a contracted purse — agreed in advance, regardless of how the fight itself turns out — after sanctioning fees, taxes, and event costs are deducted.
+      </div>
+      <p>Undercard fighters are usually paid flat, modest purses meant to cover training camp costs and build a professional record, while headline fighters on pay-per-view cards can additionally earn a share of ticket and broadcast revenue once guaranteed minimums are met.</p>
+    </div>
+  </section>
+
+  <figure class="band pre wrap" style="max-width:none; padding:0;">
+    <img src="https://images.unsplash.com/photo-1716306886418-f84f6d4c2f3a?fm=jpg&q=80&w=1600&auto=format&fit=crop" alt="A row of punching bags in an empty gym">
+    <figcaption>Most of a boxer's career happens here, long before any purse is negotiated.</figcaption>
+  </figure>
+
+  <!-- ROUND 04 -->
+  <section class="round wrap" id="weighin">
+    <div class="round-head">
+      <span class="round-num">ROUND&nbsp;04</span>
+      <h2>Weigh-Ins &amp; Making Weight</h2>
+    </div>
+    <div class="round-body">
+      <p>Every professional bout includes an official weigh-in, typically the day before the fight, where both boxers must be at or under their contracted division limit on a certified scale supervised by the athletic commission.</p>
+      <h3>What happens if a fighter misses weight</h3>
+      <p>Missing weight doesn't automatically cancel a fight, but it usually comes with consequences: the overweight fighter may forfeit a percentage of their purse to their opponent, be stripped of eligibility to win a title even if they win the bout, or in some cases see the fight cancelled outright if the difference is too large for the commission to approve.</p>
+      <p>Because of this, fight week has its own separate discipline from training camp — many boxers walk into the ring the next night noticeably heavier than their contracted weight, having rehydrated after making the number on the scale.</p>
+    </div>
+  </section>
+
+  <div class="duo">
+    <img src="https://images.unsplash.com/photo-1557564437-0995702f88fc?fm=jpg&q=80&w=1000&auto=format&fit=crop" alt="Weight training bags resting on the floor near a wall">
+    <img src="https://images.unsplash.com/photo-1633394782368-6e7260566004?fm=jpg&q=80&w=1000&auto=format&fit=crop" alt="A pair of boxing gloves hanging from a hook">
+    <figcaption>The scale the day before, the gloves the day of — two very different kinds of pressure.</figcaption>
+  </div>
+
+  <!-- ROUND 05 -->
+  <section class="round wrap" id="broadcast">
+    <div class="round-head">
+      <span class="round-num">ROUND&nbsp;05</span>
+      <h2>From Radio to Pay-Per-View</h2>
+    </div>
+    <div class="round-body">
+      <p>Boxing has tracked new broadcast technology closely for a century, largely because a single fight is such a self-contained, high-stakes broadcast event. Radio brought national audiences to heavyweight title fights in the 1920s, and boxing was among the first sports broadcast on American television in the 1940s, with weekly network fight nights becoming a fixture of early TV schedules.</p>
+      <h3>The move to pay-per-view</h3>
+      <p>By the 1980s, as free network broadcasts declined, promoters shifted the biggest fights to closed-circuit and later home pay-per-view, charging viewers directly per event rather than relying on advertising revenue. This tied the financial ceiling of the sport's biggest nights directly to how many households would pay to watch, which reshaped how fights were promoted — building a single event's narrative became as commercially important as the fight itself.</p>
+      <p>Streaming platforms have added a third model more recently, sitting between traditional subscription broadcasting and pay-per-view, and giving promoters more distribution options than at any earlier point in the sport's history.</p>
+    </div>
+  </section>
+
+  <!-- ROUND 06 -->
+  <section class="round wrap" id="commission">
+    <div class="round-head">
+      <span class="round-num">ROUND&nbsp;06</span>
+      <h2>Licensing &amp; Athletic Commissions</h2>
+    </div>
+    <div class="round-body">
+      <p>Every professional fight is overseen by a regional athletic commission — a state commission in the US, or a national boxing board elsewhere — that licenses boxers, promoters, and officials, and enforces medical and safety standards independent of any promoter or sanctioning body.</p>
+      <table>
+        <thead><tr><th>Role</th><th>What they check</th></tr></thead>
+        <tbody>
+          <tr><td>Pre-fight medical</td><td>Bloodwork, eye exams, and neurological screening required before a license is issued or renewed.</td></tr>
+          <tr><td>Ringside physician</td><td>Present at every bout, authorised to stop a fight on medical grounds independent of the referee.</td></tr>
+          <tr><td>Licensing</td><td>Confirms a fighter's professional record and amateur background before approving them to compete.</td></tr>
+          <tr><td>Post-fight suspension</td><td>Mandatory rest periods, longer after a knockout loss, before a boxer is cleared to fight again.</td></tr>
+        </tbody>
+      </table>
+      <p>Because commissions operate independently of promoters, they're the part of the sport's structure most directly responsible for fighter safety — a promoter wants a fight to happen, but a commission's approval is what actually decides whether it's allowed to.</p>
+    </div>
+  </section>
+
+  <figure class="band wrap" style="max-width:none; padding:0;">
+    <img src="https://images.unsplash.com/photo-1651707999601-cba87015439c?fm=jpg&q=80&w=1600&auto=format&fit=crop" alt="A boxer standing alone in a ring">
+    <figcaption class="wrap">Every part of the business above exists to get one fighter, in one ring, cleared to compete.</figcaption>
+  </figure>
+
+  <!-- ROUND 07 -->
+  <section class="round wrap" id="terms">
+    <div class="round-head">
+      <span class="round-num">ROUND&nbsp;07</span>
+      <h2>Business Glossary</h2>
+    </div>
+    <div class="round-body">
+      <dl class="glossary">
+        <dt>Purse</dt><dd>The agreed payment a fighter receives for a bout, set before the fight regardless of the outcome.</dd>
+        <dt>Sanctioning fee</dt><dd>A percentage of the purse paid to a governing body for the right to contest its title.</dd>
+        <dt>Mandatory defence</dt><dd>A required title fight against a sanctioning body's top-ranked contender.</dd>
+        <dt>Optional defence</dt><dd>A title fight against a contender of the champion's choosing rather than the mandatory challenger.</dd>
+        <dt>Co-main event</dt><dd>The second-most prominent fight on a card, broadcast just before the headline bout.</dd>
+        <dt>Gate</dt><dd>Total revenue from ticket sales at the live venue.</dd>
+        <dt>Rehydration clause</dt><dd>A contract term capping how much weight a fighter can regain between the weigh-in and fight night.</dd>
+        <dt>Step-aside fee</dt><dd>A payment made to a mandatory challenger in exchange for allowing a more commercially valuable fight to happen instead.</dd>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>This page is a general overview of how professional boxing is typically organised and does not reflect the specific terms of any promoter, sanctioning body, or commission.</p>
+    <p>Photographs via Unsplash contributors: Temple Noble Art, Sebastian Huxley, Prateek Katyal, Adam Wilson, Mike Cox, and Victor Marques.</p>
+  </div>
+</footer>
+
+</body>
+</html>
